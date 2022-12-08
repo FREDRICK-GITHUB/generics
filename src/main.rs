@@ -1,38 +1,26 @@
 
-fn largest (list: &[i32]) -> &i32 {
-    let mut largest = &list[0];
+ /* Example of a struct of generic type */
 
-    for item in list {
-        if item > largest {
-            largest = item;
-        }
-    }
+ #[derive(Debug)]
+ struct Point<T> {
+    x: T,
+    y: T,
+ }
 
-    largest
-}
-
-
-
-
-
+ /*defination of a struct that has generics that could be of different types */
+#[derive(Debug)]
+ struct Point1<T, U> {
+    x: T,
+    y: U,
+ }
 
 fn main() {
-    let number_list = vec![34, 50, 25, 100, 65];
+    let integer = Point {x:4,y:9};
+    let  float = Point { x:7.5, y:1.3};
+    println!("Two structs: integer struct has {:?} and float struct has {:?}", integer,float);
 
-    // let mut largest = &number_list[0];
-
-    // for number in &number_list {
-    //     if number > largest {
-    //         largest = number;
-    //     }
-    // }
-    // println!("The largest number is: {}", largest);
-
-    let result = largest(&number_list);
-    println!("The largest number is: {}", result);
-
-    let number_list = vec![102, 34, 6000, 89, 54, 2, 43, 8];
-
-    let result = largest(&number_list);
-    println!("The largest number is: {}", result);
+    let both_integer = Point1 { x:5,y:7 };
+    let both_float = Point1 { x: 5.6, y: 8.3 };
+    let integer_and_float = Point1 { x:6, y:1.2 };
+    println!("We have three different structs: {:?} {:?} {:?}", both_integer, both_float, integer_and_float);
 }
